@@ -5,8 +5,11 @@ export const projects = [
     title: 'Realtime SDF Renderer',
     featured: true,
     hook: 'A real-time C++/OpenGL workspace editor for ray-marched signed distance fields with NPR stylization.',
+    keyFeatureLabel: 'Modified ray marching',
+    keyFeature:
+      'The renderer uses over-relaxed sphere tracing (omega = 1.6) with rollback when a step overshoots the surface, giving faster convergence than standard sphere tracing while remaining stable. Objects and the analytic floor are marched separately, with a distance cap at the floor intersection so rays do not terminate early or skip geometry near silhouettes. Exact ellipsoid and non-uniform box distances keep stretched primitives reliable. On the shading side, soft shadows, ambient occlusion, multi-light response, and material controls produce a viewport that reads closer to a production engine than a basic SDF demo.',
     description:
-      'Native desktop SDF scene editor with fullscreen GLSL ray marching, CSG, smooth blending, multi-light shadows, and non-photorealistic shading modes including cel, Gooch, halftone, and ink outlines.',
+      'Native desktop SDF scene editor with fullscreen GLSL ray marching, CSG, smooth blending, and non-photorealistic modes including cel, Gooch, halftone, and ink outlines.',
     github: 'https://github.com/MajdIssaDev/realtime-sdf-renderer',
     demoNote: 'Desktop application. Clone and build locally with CMake and vcpkg.',
     videoSrc: null,
@@ -14,10 +17,9 @@ export const projects = [
     embedUrl: null,
     gallery: [],
     highlights: [
-      'Fullscreen GLSL ray marcher with over-relaxed sphere tracing',
-      'Editable SDF primitives, node networks, and smooth-blend CSG',
-      'Multi-light soft shadows, fog, and material controls',
-      'NPR modes: cel shading, Gooch, MatCap, halftone, ink outlines',
+      'Rollback on overshoot keeps picking aligned with the rendered surface',
+      'Separate object and floor marching avoids grazing-ray clipping',
+      'Hybrid analytic and mesh SDF paths for boxes, prisms, and deformed geometry',
       'ImGui editor with scene save/load and transform gizmos',
     ],
     tech: ['C++17', 'OpenGL 3.3', 'GLSL', 'GLFW', 'ImGui', 'glm', 'CMake'],
@@ -28,8 +30,11 @@ export const projects = [
     title: 'Project Gladiator',
     featured: false,
     hook: 'A souls-like 3D combat prototype exploring state-driven animation sync and parry timing in Unity.',
+    keyFeatureLabel: 'Animation-synced parrying',
+    keyFeature:
+      'The core mechanic is a frame-aligned parry: blocking logic is delayed through a coroutine so the gameplay hitbox activates when the shield animation reaches the intended frame, not on the raw input frame. A combat FSM with state priority prevents input conflicts and animation cancels, while TrySpendEnergy gates heavy attacks to keep timing deliberate.',
     description:
-      'High-performance 3D action-RPG prototype with frame-synced parrying, dynamic weapon swapping via AnimatorOverrideControllers, and energy-gated combat.',
+      'High-performance 3D action-RPG prototype with dynamic weapon swapping via AnimatorOverrideControllers and energy-gated combat.',
     github: 'https://github.com/MajdIssaDev/GameEngineUnity-Project-GladiatorGame-V1',
     demoNote: 'Source available on GitHub. No playable build. See the combat demo clip.',
     videoSrc: null,
@@ -37,10 +42,9 @@ export const projects = [
     embedUrl: 'https://medal.tv/games/screen-capture/clips/m7jJwNLp0eYWWFBxI?invite=cr-MSxxWkMsMTg3NjQzNTA1&v=15',
     gallery: [],
     highlights: [
-      'State-driven combat FSM with light, heavy, and block transitions',
-      'Coroutine-synced parry window aligned to shield animation frames',
+      'State-driven combat FSM for light, heavy, and block transitions',
       'Runtime weapon hot-swap via AnimatorOverrideControllers',
-      'TrySpendEnergy pattern preventing combat spam',
+      'Modular WeaponDamage and ICombatReceiver architecture',
     ],
     tech: ['Unity', 'C#', 'Animator', 'FSM', '3D Combat'],
   },
@@ -50,8 +54,11 @@ export const projects = [
     title: 'Mobile Delivery Platform',
     featured: false,
     hook: 'Production Flutter software for multi-stop delivery routing and a consumer storefront.',
+    keyFeatureLabel: 'Split client architecture',
+    keyFeature:
+      'The product splits a driver routing application from a consumer storefront, each with its own API surface. The driver app handles multi-stop optimization, live map interaction, and turn-by-turn voice guidance. The consumer app handles catalog, cart, and phone OTP checkout. A dedicated backend proxy holds sensitive keys and exposes scoped routes so mobile clients never call privileged services directly.',
     description:
-      'Full-stack mobile product comprising a driver application with interactive maps, route optimization, turn-by-turn voice guidance, and traffic overlays, alongside a separate consumer application for catalog browsing, cart management, and phone OTP checkout.',
+      'Full-stack mobile product with interactive maps, route optimization, traffic overlays, and a separate consumer application for catalog browsing and checkout.',
     github: null,
     demoNote: 'Private repository. Commercial project. Screenshots and demo video to be added.',
     videoSrc: null,
@@ -60,9 +67,8 @@ export const projects = [
     gallery: [],
     highlights: [
       'Multi-stop route optimization with flutter_map and OpenRouteService',
-      'Turn-by-turn TTS navigation and delivery history',
-      'Consumer storefront with catalog, cart, and Supabase phone OTP checkout',
-      'Custom API proxy on Cloud Run for catalog, orders, and Places integration',
+      'Supabase phone OTP for verified checkout',
+      'Cloud Run proxy for catalog, orders, and Places integration',
       'CI with flutter analyze, format checks, and GitHub Actions',
     ],
     tech: ['Flutter', 'Dart', 'Supabase', 'Node.js', 'Cloud Run', 'Maps APIs'],

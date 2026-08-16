@@ -42,6 +42,13 @@ export default function ProjectCard({ project, featured = false }) {
 
           <p className="project-description">{project.description}</p>
 
+          {project.keyFeature && (
+            <div className="project-key-feature">
+              <h4>{project.keyFeatureLabel ?? 'Key feature'}</h4>
+              <p>{project.keyFeature}</p>
+            </div>
+          )}
+
           <ul className="project-highlights">
             {project.highlights.map((item) => (
               <li key={item}>{item}</li>
