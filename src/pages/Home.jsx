@@ -16,9 +16,9 @@ export default function Home() {
         <div className="section-inner">
           <ScrollReveal className="section-heading">
             <p className="eyebrow">Projects</p>
-            <h2>Real-time graphics work</h2>
+            <h2>Graphics, games, and shipped software</h2>
             <p className="section-lead">
-              Interactive systems spanning low-level GPU pipelines and 3D gameplay prototypes.
+              From low-level GPU work and 3D prototypes to production Flutter apps I build for real users.
             </p>
           </ScrollReveal>
 

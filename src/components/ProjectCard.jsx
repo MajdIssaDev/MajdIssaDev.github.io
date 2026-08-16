@@ -26,14 +26,18 @@ export default function ProjectCard({ project, featured = false }) {
               <h3>{project.title}</h3>
               <p className="project-hook">{project.hook}</p>
             </div>
-            <a
-              className="btn btn-ghost btn-sm"
-              href={project.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
+            {project.github ? (
+              <a
+                className="btn btn-ghost btn-sm"
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            ) : (
+              <span className="btn btn-ghost btn-sm project-private-badge">Private repo</span>
+            )}
           </div>
 
           <p className="project-description">{project.description}</p>

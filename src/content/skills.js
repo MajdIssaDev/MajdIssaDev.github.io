@@ -12,10 +12,10 @@ export const skillGroups = [
   },
   {
     title: 'Languages & Systems',
-    skills: ['C++', 'GLSL', 'C#', 'Python', 'CMake', 'vcpkg'],
+    skills: ['C++', 'GLSL', 'C#', 'Dart', 'Python', 'CMake', 'vcpkg'],
   },
   {
     title: 'Tools & Engines',
-    skills: ['Dear ImGui', 'Unity 3D', 'GLFW', 'glm', 'Git'],
+    skills: ['Dear ImGui', 'Unity 3D', 'Flutter', 'GLFW', 'glm', 'Git'],
   },
 ]

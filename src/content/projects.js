@@ -44,6 +44,29 @@ export const projects = [
     ],
     tech: ['Unity', 'C#', 'Animator', 'FSM', '3D Combat'],
   },
+  {
+    id: 'route-master',
+    slug: 'route-master-asiana',
+    title: 'Route Master (ASIANA)',
+    featured: false,
+    hook: 'Production Flutter platform for multi-stop delivery routing and a consumer storefront — commercial software engineering work.',
+    description:
+      'Full-stack mobile product built for a business client: a driver/management app with interactive maps, route optimization, turn-by-turn voice, and traffic overlays, plus a separate consumer iOS/Android app for catalog browsing, cart, and phone OTP checkout.',
+    github: null,
+    demoNote: 'Private repository — commercial project. Screenshots and demo video can be added when available.',
+    videoSrc: null,
+    posterSrc: null,
+    embedUrl: null,
+    gallery: [],
+    highlights: [
+      'Multi-stop route optimization with flutter_map and OpenRouteService',
+      'Turn-by-turn TTS navigation and delivery history',
+      'Consumer storefront with catalog, cart, and Supabase phone OTP checkout',
+      'ASIANA-Proxy backend on Cloud Run — catalog, orders, and Places API',
+      'CI with flutter analyze, format checks, and GitHub Actions',
+    ],
+    tech: ['Flutter', 'Dart', 'Supabase', 'Node.js', 'Cloud Run', 'Maps APIs'],
+  },
 ]
 
 export const featuredProject = projects.find((p) => p.featured)

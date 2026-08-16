@@ -9,13 +9,13 @@ export const site = {
   started: 'January 2024',
   github: 'https://github.com/MajdIssaDev',
   githubHandle: 'MajdIssaDev',
-  email: null,
-  linkedin: null,
+  email: 'mjd.issa17@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/majd-issa-a1aa8b262/',
   resumeUrl: null,
   photoSrc: null,
   bio: [
-    'Majd Issa is a Computer Science student at the University of Haifa (BSc, expected 2027), focused on visual computing and real-time rendering.',
-    'He builds interactive graphics systems — from a C++/OpenGL ray-marching SDF editor with NPR stylization to Unity-based 3D combat prototypes.',
-    'He is interested in research-oriented internships and graduate study in visual computing, real-time graphics, and physically based / non-photorealistic rendering.',
+    "I'm a Computer Science student at the University of Haifa (BSc, expected 2027), focused on visual computing and real-time rendering.",
+    'I build interactive graphics systems — from a C++/OpenGL ray-marching SDF editor with NPR stylization to Unity-based 3D combat prototypes. I also ship production mobile software: Route Master (ASIANA), a Flutter platform for multi-stop delivery routing and a consumer storefront app backed by a custom API proxy and Supabase auth.',
+    "I'm interested in research-oriented internships and graduate study in visual computing, real-time graphics, and physically based / non-photorealistic rendering.",
   ],
 }
