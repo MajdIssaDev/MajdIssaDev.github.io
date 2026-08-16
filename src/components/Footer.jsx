@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <p>
-          {site.name} — {site.title}
+          {site.name} · {site.title}
         </p>
         <div className="footer-links">
           <a href={site.github} target="_blank" rel="noreferrer">

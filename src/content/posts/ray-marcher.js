@@ -3,13 +3,13 @@ export const rayMarcherPost = {
   title: 'Building a Real-Time SDF Ray Marcher',
   date: '2026-03-01',
   excerpt:
-    'How I built a desktop SDF workspace editor with fullscreen ray marching, an ImGui toolset, and NPR stylization — a computer graphics final project turned portfolio centerpiece.',
+    'How I built a desktop SDF workspace editor with fullscreen ray marching, an ImGui toolset, and NPR stylization. This computer graphics final project serves as the portfolio centerpiece.',
   sections: [
     {
       heading: 'Motivation',
       paragraphs: [
-        'I wanted a graphics project that went beyond a single shader demo: something interactive, editable, and grounded in the course concepts we covered — distance fields, lighting, materials, shadows, and non-photorealistic rendering.',
-        'The result is a native C++/OpenGL desktop app that treats signed distance functions as first-class scene objects, rendered every frame through a fullscreen ray marcher.',
+        'I wanted a graphics project that went beyond a single shader demo: something interactive, editable, and grounded in the course concepts we covered. These include distance fields, lighting, materials, shadows, and non-photorealistic rendering.',
+        'The result is a native C++/OpenGL desktop application that treats signed distance functions as first-class scene objects, rendered every frame through a fullscreen ray marcher.',
       ],
     },
     {
@@ -30,7 +30,7 @@ for each pixel ray:
     {
       heading: 'Editor architecture',
       paragraphs: [
-        'The workspace is split into Hierarchy, Inspector, Environment & Lights, and Stylization tabs. Selection, transform gizmos, undo/redo, and multi-object grouping mirror small-engine editor workflows.',
+        'The workspace is split into Hierarchy, Inspector, Environment and Lights, and Stylization tabs. Selection, transform gizmos, undo/redo, and multi-object grouping mirror small-engine editor workflows.',
         'Scenes serialize to .sdfscene files; individual objects export as .sdfobject. This made iteration fast during development and gives reviewers a clear artifact beyond screenshots.',
       ],
       note: 'TODO: add editor UI screenshot when available',
@@ -45,7 +45,7 @@ for each pixel ray:
     {
       heading: 'Next steps',
       paragraphs: [
-        'Demo recordings and gallery images are coming soon. Until then, clone the repository and build locally — instructions are in the README.',
+        'Demo recordings and gallery images are coming soon. Until then, clone the repository and build locally. Instructions are in the README.',
       ],
       link: {
         label: 'View on GitHub',

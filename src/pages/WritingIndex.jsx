@@ -21,7 +21,7 @@ export default function WritingIndex() {
             <p className="eyebrow">Writing</p>
             <h1>Technical notes</h1>
             <p className="section-lead">
-              Notes on building real-time rendering systems — expanded as demo media becomes available.
+              Notes on building real-time rendering systems. Additional detail will be added as demo media becomes available.
             </p>
           </ScrollReveal>
 

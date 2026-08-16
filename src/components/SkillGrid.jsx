@@ -9,7 +9,7 @@ export default function SkillGrid() {
           <p className="eyebrow">Skills</p>
           <h2>Graphics-first toolkit</h2>
           <p className="section-lead">
-            Focus areas aligned with visual computing research and real-time rendering internships.
+            Technical focus areas in real-time rendering, with additional experience in mobile and systems software.
           </p>
         </ScrollReveal>
 

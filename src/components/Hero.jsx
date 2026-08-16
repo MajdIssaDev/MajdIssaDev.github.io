@@ -8,7 +8,7 @@ export default function Hero() {
     <section className="hero" id="top">
       <div className="hero-inner">
         <ScrollReveal className="hero-content">
-          <p className="badge">Visual Computing · Research-oriented</p>
+          <p className="badge">Computer Science · Visual computing focus</p>
           <h1>{site.name}</h1>
           <p className="hero-degree">
             {site.degree} · {site.university}

@@ -18,7 +18,7 @@ export default function Home() {
             <p className="eyebrow">Projects</p>
             <h2>Graphics, games, and shipped software</h2>
             <p className="section-lead">
-              From low-level GPU work and 3D prototypes to production Flutter apps I build for real users.
+              From low-level GPU work and 3D prototypes to production Flutter applications deployed for real users.
             </p>
           </ScrollReveal>
 

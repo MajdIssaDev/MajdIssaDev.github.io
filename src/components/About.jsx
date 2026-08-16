@@ -7,7 +7,7 @@ export default function About() {
       <div className="section-inner about-layout">
         <ScrollReveal className="section-heading">
           <p className="eyebrow">About</p>
-          <h2>Visual computing student</h2>
+          <h2>About me</h2>
         </ScrollReveal>
 
         <ScrollReveal>

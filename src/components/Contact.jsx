@@ -26,7 +26,7 @@ export default function Contact() {
           <p className="eyebrow">Contact</p>
           <h2>Get in touch</h2>
           <p className="section-lead">
-            I&apos;m open to visual computing research internships and MSc-oriented collaborations.
+            I am open to visual computing research internships and MSc-oriented collaborations.
           </p>
         </ScrollReveal>
 

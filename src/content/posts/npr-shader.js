@@ -3,7 +3,7 @@ export const nprShaderPost = {
   title: 'NPR in a Ray Marching Shader',
   date: '2026-03-15',
   excerpt:
-    'Cel bands, Gooch technical shading, halftone shadows, and ink outlines — stylization modes inside the same SDF ray marcher.',
+    'Cel bands, Gooch technical shading, halftone shadows, and ink outlines. Stylization modes implemented inside the same SDF ray marcher.',
   sections: [
     {
       heading: 'Stylization as a shader branch',
@@ -20,10 +20,10 @@ export const nprShaderPost = {
         'Fresnel silhouettes and normal/depth ink outlines for comic-style edge emphasis.',
       ],
       list: [
-        'Cel shading bands — discrete lighting quantization',
-        'Halftone shadows — screen-space dot pattern in darker regions',
-        'Ink outlines — edge detection from normals and depth',
-        'Gooch shading — warm/cool technical illustration look',
+        'Cel shading bands: discrete lighting quantization',
+        'Halftone shadows: screen-space dot pattern in darker regions',
+        'Ink outlines: edge detection from normals and depth',
+        'Gooch shading: warm/cool technical illustration look',
       ],
     },
     {
