@@ -38,7 +38,7 @@ Update these fields when you have assets ready. No component code changes needed
 
 ## Mobile delivery platform screenshots
 
-Processed screenshots live in `src/assets/delivery/` (Vite bundled, not `public/`). Re-run:
+Processed screenshots live in `src/assets/delivery/` (Vite bundled, not `public/`). The script only hides the iOS status bar. Re-run:
 
 ```powershell
 python scripts/process-delivery-screenshots.py
