@@ -22,7 +22,7 @@ def grade_cyan(rgb: np.ndarray) -> np.ndarray:
     r = r * 0.76 + 5.0
     g = g * 0.79 + 12.0
     b = np.minimum(255.0, b * 0.86 + 32.0)
-    stacked = np.stack([r, g, b], axis=-1) * 0.84
+    stacked = np.stack([r, g, b], axis=-1) * 1.08
     return np.clip(stacked, 0, 255).astype(np.uint8)
 
 
@@ -65,8 +65,8 @@ def main() -> None:
     alpha = np.array(cutout)[..., 3]
     graded = grade_cyan(rgb)
     graded_img = Image.fromarray(np.dstack([graded, alpha]), mode="RGBA")
-    graded_img = ImageEnhance.Contrast(graded_img).enhance(1.1)
-    graded_img = ImageEnhance.Brightness(graded_img).enhance(0.88)
+    graded_img = ImageEnhance.Contrast(graded_img).enhance(1.08)
+    graded_img = ImageEnhance.Brightness(graded_img).enhance(1.14)
     graded_img = ImageEnhance.Color(graded_img).enhance(1.05)
     cropped = crop_to_subject(graded_img)
     OUT.parent.mkdir(parents=True, exist_ok=True)

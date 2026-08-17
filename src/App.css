@@ -257,7 +257,7 @@
 }
 
 .halftone-photo {
-  filter: contrast(1.05) saturate(1) brightness(0.71);
+  filter: contrast(1.06) saturate(1.04) brightness(1.08);
 }
 
 .btn {
