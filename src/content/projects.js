@@ -60,11 +60,17 @@ export const projects = [
     description:
       'Full-stack mobile product with interactive maps, route optimization, traffic overlays, and a separate consumer application for catalog browsing and checkout.',
     github: null,
-    demoNote: 'Private repository. Commercial project. Screenshots and demo video to be added.',
+    demoNote: 'Private repository. Commercial project.',
     videoSrc: null,
-    posterSrc: null,
+    posterSrc: '/assets/delivery/route-map.png',
     embedUrl: null,
-    gallery: [],
+    gallery: [
+      '/assets/delivery/route-map.png',
+      '/assets/delivery/assigned-deliveries.png',
+      '/assets/delivery/dispatch-workers.png',
+      '/assets/delivery/orders-pending.png',
+      '/assets/delivery/demand-heatmap.png',
+    ],
     highlights: [
       'Multi-stop route optimization with flutter_map and OpenRouteService',
       'Supabase phone OTP for verified checkout',
