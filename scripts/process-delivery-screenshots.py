@@ -10,15 +10,13 @@ SRC = Path(
     r"C:\Users\Mjdis\.cursor\projects\c-Users-Mjdis-OneDrive-Documents-AutoHotkey\assets"
 )
 OUT = ROOT / "src" / "assets" / "delivery"
-OUT_PUBLIC = ROOT / "public" / "assets" / "delivery"
 
-# Source files mapped to portfolio output names
 FILES = {
-    "route-map.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806083884-e0fa5958-dcd8-4d99-9014-667530327d0d.png",
-    "demand-heatmap.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806084020-7936d616-4f27-4b6c-984a-9d6e905eb1f1.png",
-    "orders-pending.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082510-d16456b9-8a48-4787-83bf-792e6a3a6635.png",
-    "dispatch-workers.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082813-21b878e5-6e50-416f-86f5-aea74cdefe24.png",
-    "assigned-deliveries.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082999-cf86ffeb-fb94-48bf-ba93-8c56c824fb16.png",
+    "route-map-v2.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806083884-e0fa5958-dcd8-4d99-9014-667530327d0d.png",
+    "demand-heatmap-v2.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806084020-7936d616-4f27-4b6c-984a-9d6e905eb1f1.png",
+    "orders-pending-v2.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082510-d16456b9-8a48-4787-83bf-792e6a3a6635.png",
+    "dispatch-workers-v2.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082813-21b878e5-6e50-416f-86f5-aea74cdefe24.png",
+    "assigned-deliveries-v2.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082999-cf86ffeb-fb94-48bf-ba93-8c56c824fb16.png",
 }
 
 HEADER_COLOR = (15, 23, 42)
@@ -66,32 +64,28 @@ def blur_assigned_item(img: Image.Image) -> None:
     blur_region(img, box_from_ratio(img, 0.06, 0.58, 0.88, 0.72), radius=14)
 
 
-def upscale(img: Image.Image, scale: int = 2) -> Image.Image:
-    return img.resize((img.width * scale, img.height * scale), Image.Resampling.LANCZOS)
-
-
 def process(name: str, src_name: str) -> None:
     src_path = SRC / src_name
+    if not src_path.exists():
+        raise FileNotFoundError(f"Missing source screenshot: {src_path}")
+
     img = Image.open(src_path).convert("RGB")
+    print(f"Processing {name} from {src_path.name} ({img.size[0]}x{img.size[1]})")
 
     hide_status_bar(img)
     blur_asiana(img)
 
-    if name == "dispatch-workers.png":
+    if "dispatch-workers" in name:
         blur_workers(img)
-    if name == "orders-pending.png":
+    if "orders-pending" in name:
         blur_phone(img)
-    if name == "assigned-deliveries.png":
+    if "assigned-deliveries" in name:
         blur_assigned_item(img)
 
-    img = upscale(img, 2)
-
     OUT.mkdir(parents=True, exist_ok=True)
-    OUT_PUBLIC.mkdir(parents=True, exist_ok=True)
     out_path = OUT / name
     img.save(out_path, format="PNG", optimize=True)
-    img.save(OUT_PUBLIC / name, format="PNG", optimize=True)
-    print(f"Wrote {out_path} ({img.size[0]}x{img.size[1]})")
+    print(f"  -> {out_path} ({img.size[0]}x{img.size[1]}, {out_path.stat().st_size} bytes)")
 
 
 def main() -> None:

@@ -38,13 +38,13 @@ Update these fields when you have assets ready. No component code changes needed
 
 ## Mobile delivery platform screenshots
 
-Processed screenshots live in `public/assets/delivery/`. Re-run `python scripts/process-delivery-screenshots.py` if source images change (redacts status bar, brand name, and sensitive fields).
+Processed screenshots live in `src/assets/delivery/` (Vite bundled, not `public/`). Re-run:
 
-In `src/content/projects.js`, find the `delivery-platform` entry:
-   ```js
-   posterSrc: '/assets/delivery/route-map.png',
-   gallery: ['/assets/delivery/route-map.png', ...],
-   ```
+```powershell
+python scripts/process-delivery-screenshots.py
+```
+
+Imports are in `src/content/projects.js` via `*-v2.png` filenames.
 
 ## Resume PDF
 

@@ -1,8 +1,8 @@
-import routeMap from '../assets/delivery/route-map.png'
-import assignedDeliveries from '../assets/delivery/assigned-deliveries.png'
-import dispatchWorkers from '../assets/delivery/dispatch-workers.png'
-import ordersPending from '../assets/delivery/orders-pending.png'
-import demandHeatmap from '../assets/delivery/demand-heatmap.png'
+import routeMap from '../assets/delivery/route-map-v2.png'
+import assignedDeliveries from '../assets/delivery/assigned-deliveries-v2.png'
+import dispatchWorkers from '../assets/delivery/dispatch-workers-v2.png'
+import ordersPending from '../assets/delivery/orders-pending-v2.png'
+import demandHeatmap from '../assets/delivery/demand-heatmap-v2.png'
 
 export const projects = [
   {
