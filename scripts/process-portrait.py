@@ -17,13 +17,13 @@ def grade_cyan(rgb: np.ndarray) -> np.ndarray:
     f = rgb.astype(np.float32)
     # Reduce warm yellow/orange, lift cyan-blue.
     r, g, b = f[..., 0], f[..., 1], f[..., 2]
-    r = r * 0.52 + g * 0.06
-    g = g * 0.82 + b * 0.18
-    b = np.minimum(255.0, b * 1.42 + 36.0)
-    # Mix toward site accent #22d3ee.
-    r = r * 0.72 + 12.0
-    g = g * 0.88 + 38.0
-    b = np.minimum(255.0, b * 0.78 + 72.0)
+    r = r * 0.38 + g * 0.08
+    g = g * 0.78 + b * 0.22
+    b = np.minimum(255.0, b * 1.55 + 48.0)
+    # Mix hard toward site accent #22d3ee.
+    r = r * 0.55 + 18.0
+    g = g * 0.72 + 72.0
+    b = np.minimum(255.0, b * 0.55 + 140.0)
     stacked = np.stack([r, g, b], axis=-1)
     return np.clip(stacked, 0, 255).astype(np.uint8)
 
