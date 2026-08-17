@@ -12,10 +12,34 @@ export const skillGroups = [
   },
   {
     title: 'Languages & Systems',
-    skills: ['C++', 'GLSL', 'C#', 'Dart', 'Python', 'CMake', 'vcpkg'],
+    skills: ['C', 'C++', 'C#', 'Java', 'Python', 'Dart', 'Swift', 'Lua', 'Assembly'],
   },
   {
-    title: 'Tools & Engines',
-    skills: ['Dear ImGui', 'Unity 3D', 'Flutter', 'GLFW', 'glm', 'Git'],
+    title: 'Platforms & Tools',
+    skills: [
+      'Flutter',
+      'Unity 3D',
+      'Dear ImGui',
+      'GLFW / glm',
+      'Linux CLI',
+      'Docker',
+      'Git / GitHub',
+      'Firebase',
+      'MySQL',
+      'AWS RDS',
+      'Hibernate',
+      'CMake / vcpkg',
+    ],
+  },
+  {
+    title: 'Others',
+    skills: [
+      'TCP/IP networking',
+      'Hardware diagnostics',
+      'Embedded systems',
+      'Technical support',
+      'Memory management',
+      'Arabic, English, Hebrew',
+    ],
   },
 ]

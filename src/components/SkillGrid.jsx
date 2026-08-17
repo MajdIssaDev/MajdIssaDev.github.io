@@ -7,9 +7,9 @@ export default function SkillGrid() {
       <div className="section-inner">
         <ScrollReveal className="section-heading">
           <p className="eyebrow">Skills</p>
-          <h2>Graphics-first toolkit</h2>
+          <h2>Technical toolkit</h2>
           <p className="section-lead">
-            Technical focus areas in real-time rendering, with additional experience in mobile and systems software.
+            Real-time graphics first, with systems, mobile, cloud, and IT support experience alongside it.
           </p>
         </ScrollReveal>
 
