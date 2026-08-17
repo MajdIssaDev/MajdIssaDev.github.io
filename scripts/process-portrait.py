@@ -17,13 +17,13 @@ def grade_cyan(rgb: np.ndarray) -> np.ndarray:
     f = rgb.astype(np.float32)
     # Reduce warm yellow/orange, lift cyan-blue.
     r, g, b = f[..., 0], f[..., 1], f[..., 2]
-    r = r * 0.68 + g * 0.05
-    g = g * 0.88 + b * 0.12
-    b = np.minimum(255.0, b * 1.28 + 28.0)
-    # Cyan wash toward site accent #22d3ee.
-    r = r * 0.88 + 8.0
-    g = g * 0.94 + 18.0
-    b = np.minimum(255.0, b + 22.0)
+    r = r * 0.52 + g * 0.06
+    g = g * 0.82 + b * 0.18
+    b = np.minimum(255.0, b * 1.42 + 36.0)
+    # Mix toward site accent #22d3ee.
+    r = r * 0.72 + 12.0
+    g = g * 0.88 + 38.0
+    b = np.minimum(255.0, b * 0.78 + 72.0)
     stacked = np.stack([r, g, b], axis=-1)
     return np.clip(stacked, 0, 255).astype(np.uint8)
 
@@ -67,8 +67,8 @@ def main() -> None:
     alpha = np.array(cutout)[..., 3]
     graded = grade_cyan(rgb)
     graded_img = Image.fromarray(np.dstack([graded, alpha]), mode="RGBA")
-    graded_img = ImageEnhance.Contrast(graded_img).enhance(1.08)
-    graded_img = ImageEnhance.Color(graded_img).enhance(0.88)
+    graded_img = ImageEnhance.Contrast(graded_img).enhance(1.12)
+    graded_img = ImageEnhance.Color(graded_img).enhance(1.05)
     cropped = crop_to_subject(graded_img)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     cropped.save(OUT, format="PNG", optimize=True)

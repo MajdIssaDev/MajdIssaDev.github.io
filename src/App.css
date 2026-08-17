@@ -231,7 +231,7 @@
 }
 
 .halftone-photo {
-  filter: contrast(1.06) saturate(0.92);
+  filter: contrast(1.12) saturate(1.25) hue-rotate(18deg);
 }
 
 .btn {
