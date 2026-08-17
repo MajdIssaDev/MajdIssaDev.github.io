@@ -12,16 +12,16 @@ SRC = Path(
 OUT = ROOT / "src" / "assets" / "delivery"
 OUT_PUBLIC = ROOT / "public" / "assets" / "delivery"
 
-# Source files in display order
+# Source files mapped to portfolio output names
 FILES = {
-    "route-map.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_IMG_7008-eed4c9d4-c509-4b07-ae8a-ef666ee6d6b0.png",
-    "assigned-deliveries.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_IMG_7007-e21e23a6-28ff-4522-86cc-bc92a1294392.png",
-    "dispatch-workers.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_IMG_7006-9be3b7b5-3ade-450e-9495-f98a7e3e0e1e.png",
-    "orders-pending.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_IMG_7005-0dc60c0a-0d4c-4505-858e-9d29d3b5136c.png",
-    "demand-heatmap.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_IMG_7004-212491e8-3e81-4ad7-8846-1988f179d55e.png",
+    "route-map.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806083884-e0fa5958-dcd8-4d99-9014-667530327d0d.png",
+    "demand-heatmap.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806084020-7936d616-4f27-4b6c-984a-9d6e905eb1f1.png",
+    "orders-pending.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082510-d16456b9-8a48-4787-83bf-792e6a3a6635.png",
+    "dispatch-workers.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082813-21b878e5-6e50-416f-86f5-aea74cdefe24.png",
+    "assigned-deliveries.png": "c__Users_Mjdis_AppData_Roaming_Cursor_User_workspaceStorage_8e3fa4fafd4454ba0d2c580eb2b80b0a_images_1779806082999-cf86ffeb-fb94-48bf-ba93-8c56c824fb16.png",
 }
 
-HEADER_COLOR = (15, 23, 42)  # matches app dark header
+HEADER_COLOR = (15, 23, 42)
 
 
 def box_from_ratio(img: Image.Image, x0: float, y0: float, x1: float, y1: float) -> tuple[int, int, int, int]:
@@ -59,10 +59,14 @@ def blur_workers(img: Image.Image) -> None:
 
 
 def blur_phone(img: Image.Image) -> None:
-    blur_region(img, box_from_ratio(img, 0.04, 0.33, 0.96, 0.50), radius=18)
+    blur_region(img, box_from_ratio(img, 0.04, 0.30, 0.96, 0.48), radius=18)
 
 
-def upscale(img: Image.Image, scale: int = 3) -> Image.Image:
+def blur_assigned_item(img: Image.Image) -> None:
+    blur_region(img, box_from_ratio(img, 0.06, 0.58, 0.88, 0.72), radius=14)
+
+
+def upscale(img: Image.Image, scale: int = 2) -> Image.Image:
     return img.resize((img.width * scale, img.height * scale), Image.Resampling.LANCZOS)
 
 
@@ -77,8 +81,10 @@ def process(name: str, src_name: str) -> None:
         blur_workers(img)
     if name == "orders-pending.png":
         blur_phone(img)
+    if name == "assigned-deliveries.png":
+        blur_assigned_item(img)
 
-    img = upscale(img, 3)
+    img = upscale(img, 2)
 
     OUT.mkdir(parents=True, exist_ok=True)
     OUT_PUBLIC.mkdir(parents=True, exist_ok=True)
