@@ -36,16 +36,6 @@ Update these fields when you have assets ready. No component code changes needed
    gallery: ['/assets/gladiator/combat.png'],
    ```
 
-## Mobile delivery platform screenshots
-
-Processed screenshots live in `src/assets/delivery/` (Vite bundled, not `public/`). Re-run:
-
-```powershell
-python scripts/process-delivery-screenshots.py
-```
-
-Imports are in `src/content/projects.js` via `*-v2.png` filenames.
-
 ## Resume PDF
 
 1. Add `public/resume.pdf`

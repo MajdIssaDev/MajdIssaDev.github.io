@@ -1,9 +1,3 @@
-import routeMap from '../assets/delivery/route-map-v2.png'
-import assignedDeliveries from '../assets/delivery/assigned-deliveries-v2.png'
-import dispatchWorkers from '../assets/delivery/dispatch-workers-v2.png'
-import ordersPending from '../assets/delivery/orders-pending-v2.png'
-import demandHeatmap from '../assets/delivery/demand-heatmap-v2.png'
-
 export const projects = [
   {
     id: 'sdf-renderer',
@@ -70,10 +64,10 @@ export const projects = [
     github: null,
     demoNote: 'Private repository. Commercial project.',
     videoSrc: null,
-    posterSrc: routeMap,
+    posterSrc: null,
     embedUrl: null,
     mediaAspect: 'portrait',
-    gallery: [routeMap, assignedDeliveries, dispatchWorkers, ordersPending, demandHeatmap],
+    gallery: [],
     highlights: [
       'Multi-stop route optimization with flutter_map and OpenRouteService',
       'Supabase phone OTP for verified checkout',
