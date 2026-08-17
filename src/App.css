@@ -227,10 +227,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 18%;
 }
 
 .halftone-photo {
-  filter: grayscale(1) contrast(1.15) brightness(0.95);
+  filter: contrast(1.06) saturate(0.92);
 }
 
 .btn {

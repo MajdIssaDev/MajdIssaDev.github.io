@@ -12,7 +12,7 @@ export const site = {
   email: 'mjd.issa17@gmail.com',
   linkedin: 'https://www.linkedin.com/in/majd-issa-a1aa8b262/',
   resumeUrl: '/resume.pdf',
-  photoSrc: null,
+  photoSrc: '/assets/portrait.png',
   bio: [
     'I am a Computer Science student at the University of Haifa (BSc, expected 2027). My primary interests lie in visual computing and real-time rendering.',
     'I build interactive graphics systems, including a C++/OpenGL ray-marching SDF editor with NPR stylization and Unity-based 3D combat prototypes. I also develop production mobile software: a Flutter platform for multi-stop delivery routing and a consumer storefront application backed by a custom API proxy and Supabase authentication.',

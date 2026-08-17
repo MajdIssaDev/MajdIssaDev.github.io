@@ -4,11 +4,16 @@ Update these fields when you have assets ready. No component code changes needed
 
 ## Portrait photo
 
-1. Add image to `public/assets/portrait.jpg`
-2. In `src/content/site.js`, set:
-   ```js
-   photoSrc: '/assets/portrait.jpg',
-   ```
+Processed cutout lives at `public/assets/portrait.png`. Re-run:
+
+```powershell
+python scripts/process-portrait.py
+```
+
+Then in `src/content/site.js`:
+```js
+photoSrc: '/assets/portrait.png',
+```
 
 ## SDF Renderer demo video
 
