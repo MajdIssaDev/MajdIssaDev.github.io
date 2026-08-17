@@ -28,13 +28,7 @@ export const projects = [
       before: rayMarchTraditional,
       after: rayMarchRollback,
       beforeLabel: 'Standard ray marching',
-      afterLabel: 'Rollback on overshoot',
-      details: [
-        {
-          label: 'Ray–surface hit',
-          region: { x: 0.38, y: 0.16, w: 0.24, h: 0.32 },
-        },
-      ],
+      afterLabel: 'My modified ray marching',
     },
     gallery: [],
     highlights: [

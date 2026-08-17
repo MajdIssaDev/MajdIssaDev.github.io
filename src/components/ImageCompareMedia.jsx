@@ -48,60 +48,6 @@ function useCompareSlider() {
   return { position, containerRef, onTrackPointerDown, onHandlePointerDown, nudge }
 }
 
-function CompareCropPane({ src, region, variant }) {
-  const { x, y, w, h } = region
-
-  return (
-    <div className={`compare-crop-pane compare-crop-pane-${variant}`}>
-      <div
-        className="compare-crop-viewport"
-        style={{
-          '--crop-x': x,
-          '--crop-y': y,
-          '--crop-w': w,
-          '--crop-h': h,
-          backgroundImage: `url(${src})`,
-        }}
-        aria-hidden="true"
-      />
-      <span className="compare-crop-tag">{variant === 'before' ? 'Before' : 'After'}</span>
-    </div>
-  )
-}
-
-function CompareDetailZoom({ detail, before, after, position }) {
-  return (
-    <div className="compare-detail">
-      <p className="compare-detail-label">{detail.label}</p>
-      <div
-        className="compare-detail-slider"
-        style={{
-          '--crop-x': detail.region.x,
-          '--crop-y': detail.region.y,
-          '--crop-w': detail.region.w,
-          '--crop-h': detail.region.h,
-        }}
-      >
-        <div className="compare-detail-viewport">
-          <div className="compare-detail-after" style={{ backgroundImage: `url(${after})` }} />
-          <div
-            className="compare-detail-before"
-            style={{
-              backgroundImage: `url(${before})`,
-              clipPath: `inset(0 ${100 - position}% 0 0)`,
-            }}
-          />
-          <div className="compare-detail-divider" style={{ left: `${position}%` }} />
-        </div>
-      </div>
-      <div className="compare-detail-pair">
-        <CompareCropPane src={before} region={detail.region} variant="before" />
-        <CompareCropPane src={after} region={detail.region} variant="after" />
-      </div>
-    </div>
-  )
-}
-
 export default function ImageCompareMedia({ compare, title }) {
   const { position, containerRef, onTrackPointerDown, onHandlePointerDown, nudge } =
     useCompareSlider()
@@ -171,23 +117,6 @@ export default function ImageCompareMedia({ compare, title }) {
           Drag the handle to compare {beforeLabel.toLowerCase()} against {afterLabel.toLowerCase()}.
         </p>
       </div>
-
-      {(compare.details ?? []).length > 0 && (
-        <div className="compare-details">
-          <p className="compare-details-heading">Detail zoom</p>
-          <div className="compare-details-grid">
-            {(compare.details ?? []).map((detail) => (
-              <CompareDetailZoom
-                key={detail.label}
-                detail={detail}
-                before={compare.before}
-                after={compare.after}
-                position={position}
-              />
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   )
 }

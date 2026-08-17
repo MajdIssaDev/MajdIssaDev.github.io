@@ -22,18 +22,21 @@ Update these fields when you have assets ready. No component code changes needed
 
 ## SDF ray marching comparison
 
-1. Add before/after screenshots to `src/assets/sdf/`
-2. In `src/content/projects.js`, configure the `compare` block on the `sdf-renderer` entry:
+1. Save two screenshots of the **same scene, same camera, same resolution** to `src/assets/sdf/`:
+   - **Before:** standard ray marching (artifact visible, e.g. ray stops short of surface)
+   - **After:** your modified ray marching (clean hit on surface)
+2. Import them at the top of `src/content/projects.js` and configure the `compare` block:
+
    ```js
    compare: {
      before: rayMarchTraditional,
      after: rayMarchRollback,
-     beforeLabel: 'Standard sphere tracing',
-     afterLabel: 'Rollback on overshoot',
-     details: [{ label: '...', region: { x, y, w, h } }],
+     beforeLabel: 'Standard ray marching',
+     afterLabel: 'My modified ray marching',
    },
    ```
-   Region values are fractions of the image (0–1). The UI renders a drag slider plus synced detail zooms.
+
+Only two full-frame screenshots are needed (same scene and camera, one per mode). The slider combines them in the browser.
 
 ## SDF gallery images
 
