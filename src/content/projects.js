@@ -3,6 +3,8 @@ import assignedDeliveries from '../assets/delivery/assigned-deliveries-v2.png'
 import dispatchWorkers from '../assets/delivery/dispatch-workers-v2.png'
 import ordersPending from '../assets/delivery/orders-pending-v2.png'
 import demandHeatmap from '../assets/delivery/demand-heatmap-v2.png'
+import rayMarchTraditional from '../assets/sdf/ray-march-traditional.png'
+import rayMarchRollback from '../assets/sdf/ray-march-rollback.png'
 
 export const projects = [
   {
@@ -22,6 +24,22 @@ export const projects = [
     posterSrc: null,
     embedUrl: null,
     mediaAspect: 'video',
+    compare: {
+      before: rayMarchTraditional,
+      after: rayMarchRollback,
+      beforeLabel: 'Standard sphere tracing',
+      afterLabel: 'Rollback on overshoot',
+      details: [
+        {
+          label: 'Object–floor contact',
+          region: { x: 0.44, y: 0.58, w: 0.2, h: 0.32 },
+        },
+        {
+          label: 'CSG blend seam',
+          region: { x: 0.56, y: 0.34, w: 0.24, h: 0.3 },
+        },
+      ],
+    },
     gallery: [],
     highlights: [
       'Rollback on overshoot keeps picking aligned with the rendered surface',

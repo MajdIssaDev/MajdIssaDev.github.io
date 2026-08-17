@@ -1,13 +1,19 @@
 import MediaPlaceholder from './MediaPlaceholder.jsx'
+import ImageCompareMedia from './ImageCompareMedia.jsx'
 import ScrollReveal from './ScrollReveal.jsx'
 
 export default function ProjectCard({ project, featured = false }) {
   const hasHeroMedia =
-    project.videoSrc || project.posterSrc || (!featured && project.embedUrl)
+    project.videoSrc ||
+    project.posterSrc ||
+    project.compare ||
+    (!featured && project.embedUrl)
   const mediaLabel = featured
     ? project.videoSrc
       ? undefined
-      : 'SDF demo recording coming soon'
+      : project.compare
+        ? undefined
+        : 'SDF demo recording coming soon'
     : hasHeroMedia || project.gallery.length > 0
       ? undefined
       : 'Screenshots coming soon'
@@ -15,15 +21,20 @@ export default function ProjectCard({ project, featured = false }) {
   return (
     <ScrollReveal>
       <article className={`card project-card ${featured ? 'project-card-featured' : ''}`}>
-        <MediaPlaceholder
-          videoSrc={project.videoSrc}
-          posterSrc={project.posterSrc}
-          embedUrl={featured ? null : project.embedUrl}
-          label={mediaLabel}
-          title={project.title}
-          mediaAspect={project.mediaAspect ?? 'video'}
-        />
-
+        {project.compare ? (
+          <div className="media-slot media-slot-compare">
+            <ImageCompareMedia compare={project.compare} title={project.title} />
+          </div>
+        ) : (
+          <MediaPlaceholder
+            videoSrc={project.videoSrc}
+            posterSrc={project.posterSrc}
+            embedUrl={featured ? null : project.embedUrl}
+            label={mediaLabel}
+            title={project.title}
+            mediaAspect={project.mediaAspect ?? 'video'}
+          />
+        )}
         <div className="project-body">
           <div className="project-header">
             <div>

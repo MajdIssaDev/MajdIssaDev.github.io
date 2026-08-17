@@ -20,6 +20,21 @@ Update these fields when you have assets ready. No component code changes needed
    posterSrc: '/assets/sdf-poster.jpg',  // optional
    ```
 
+## SDF ray marching comparison
+
+1. Add before/after screenshots to `src/assets/sdf/`
+2. In `src/content/projects.js`, configure the `compare` block on the `sdf-renderer` entry:
+   ```js
+   compare: {
+     before: rayMarchTraditional,
+     after: rayMarchRollback,
+     beforeLabel: 'Standard sphere tracing',
+     afterLabel: 'Rollback on overshoot',
+     details: [{ label: '...', region: { x, y, w, h } }],
+   },
+   ```
+   Region values are fractions of the image (0–1). The UI renders a drag slider plus synced detail zooms.
+
 ## SDF gallery images
 
 1. Add images to `public/assets/sdf/` (e.g. `editor.png`, `npr.png`)
