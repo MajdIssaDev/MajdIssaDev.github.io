@@ -13,18 +13,17 @@ OUT = Path(r"c:\Projects\MajdIssaDev.github.io\public\assets\portrait.png")
 
 
 def grade_cyan(rgb: np.ndarray) -> np.ndarray:
-    """Cool the image toward the site's cyan/slate palette."""
+    """Cool the image toward a dark navy/slate, not bright cyan."""
     f = rgb.astype(np.float32)
-    # Reduce warm yellow/orange, lift cyan-blue.
     r, g, b = f[..., 0], f[..., 1], f[..., 2]
-    r = r * 0.38 + g * 0.08
-    g = g * 0.78 + b * 0.22
-    b = np.minimum(255.0, b * 1.55 + 48.0)
-    # Mix hard toward site accent #22d3ee.
-    r = r * 0.55 + 18.0
-    g = g * 0.72 + 72.0
-    b = np.minimum(255.0, b * 0.55 + 140.0)
-    stacked = np.stack([r, g, b], axis=-1)
+    r = r * 0.42 + g * 0.04
+    g = g * 0.58 + b * 0.12
+    b = b * 0.82 + 28.0
+    # Mix toward dark navy (#0f2744) rather than accent cyan.
+    r = r * 0.62 + 8.0
+    g = g * 0.68 + 22.0
+    b = np.minimum(255.0, b * 0.78 + 58.0)
+    stacked = np.stack([r, g, b], axis=-1) * 0.82
     return np.clip(stacked, 0, 255).astype(np.uint8)
 
 
@@ -67,8 +66,9 @@ def main() -> None:
     alpha = np.array(cutout)[..., 3]
     graded = grade_cyan(rgb)
     graded_img = Image.fromarray(np.dstack([graded, alpha]), mode="RGBA")
-    graded_img = ImageEnhance.Contrast(graded_img).enhance(1.12)
-    graded_img = ImageEnhance.Color(graded_img).enhance(1.05)
+    graded_img = ImageEnhance.Contrast(graded_img).enhance(1.1)
+    graded_img = ImageEnhance.Brightness(graded_img).enhance(0.88)
+    graded_img = ImageEnhance.Color(graded_img).enhance(0.95)
     cropped = crop_to_subject(graded_img)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     cropped.save(OUT, format="PNG", optimize=True)
