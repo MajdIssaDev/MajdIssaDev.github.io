@@ -195,9 +195,9 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: #164e63;
+  background: #123e4f;
   mix-blend-mode: color;
-  opacity: 0.58;
+  opacity: 0.46;
   pointer-events: none;
 }
 
@@ -242,7 +242,7 @@
 }
 
 .halftone-photo {
-  filter: contrast(1.08) saturate(0.92) brightness(0.86);
+  filter: contrast(1.06) saturate(0.94) brightness(0.89);
 }
 
 .btn {

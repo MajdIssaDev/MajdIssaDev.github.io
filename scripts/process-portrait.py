@@ -16,14 +16,14 @@ def grade_cyan(rgb: np.ndarray) -> np.ndarray:
     """Cool the image toward a dark navy/slate, not bright cyan."""
     f = rgb.astype(np.float32)
     r, g, b = f[..., 0], f[..., 1], f[..., 2]
-    r = r * 0.42 + g * 0.04
-    g = g * 0.58 + b * 0.12
-    b = b * 0.82 + 28.0
-    # Mix toward dark navy (#0f2744) rather than accent cyan.
-    r = r * 0.62 + 8.0
-    g = g * 0.68 + 22.0
-    b = np.minimum(255.0, b * 0.78 + 58.0)
-    stacked = np.stack([r, g, b], axis=-1) * 0.82
+    r = r * 0.54 + g * 0.03
+    g = g * 0.66 + b * 0.1
+    b = b * 0.86 + 22.0
+    # Mix toward a darker navy, 20% weaker than the previous pass.
+    r = r * 0.7 + 6.0
+    g = g * 0.74 + 16.0
+    b = np.minimum(255.0, b * 0.82 + 42.0)
+    stacked = np.stack([r, g, b], axis=-1) * 0.78
     return np.clip(stacked, 0, 255).astype(np.uint8)
 
 
