@@ -9,7 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = Path(
     r"C:\Users\Mjdis\.cursor\projects\c-Users-Mjdis-OneDrive-Documents-AutoHotkey\assets"
 )
-OUT = ROOT / "public" / "assets" / "delivery"
+OUT = ROOT / "src" / "assets" / "delivery"
+OUT_PUBLIC = ROOT / "public" / "assets" / "delivery"
 
 # Source files in display order
 FILES = {
@@ -80,8 +81,10 @@ def process(name: str, src_name: str) -> None:
     img = upscale(img, 3)
 
     OUT.mkdir(parents=True, exist_ok=True)
+    OUT_PUBLIC.mkdir(parents=True, exist_ok=True)
     out_path = OUT / name
     img.save(out_path, format="PNG", optimize=True)
+    img.save(OUT_PUBLIC / name, format="PNG", optimize=True)
     print(f"Wrote {out_path} ({img.size[0]}x{img.size[1]})")
 
 

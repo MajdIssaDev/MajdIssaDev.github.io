@@ -1,3 +1,9 @@
+import routeMap from '../assets/delivery/route-map.png'
+import assignedDeliveries from '../assets/delivery/assigned-deliveries.png'
+import dispatchWorkers from '../assets/delivery/dispatch-workers.png'
+import ordersPending from '../assets/delivery/orders-pending.png'
+import demandHeatmap from '../assets/delivery/demand-heatmap.png'
+
 export const projects = [
   {
     id: 'sdf-renderer',
@@ -15,6 +21,7 @@ export const projects = [
     videoSrc: null,
     posterSrc: null,
     embedUrl: null,
+    mediaAspect: 'video',
     gallery: [],
     highlights: [
       'Rollback on overshoot keeps picking aligned with the rendered surface',
@@ -40,6 +47,7 @@ export const projects = [
     videoSrc: null,
     posterSrc: null,
     embedUrl: 'https://medal.tv/games/screen-capture/clips/m7jJwNLp0eYWWFBxI?invite=cr-MSxxWkMsMTg3NjQzNTA1&v=15',
+    mediaAspect: 'video',
     gallery: [],
     highlights: [
       'State-driven combat FSM for light, heavy, and block transitions',
@@ -62,15 +70,10 @@ export const projects = [
     github: null,
     demoNote: 'Private repository. Commercial project.',
     videoSrc: null,
-    posterSrc: '/assets/delivery/route-map.png',
+    posterSrc: routeMap,
     embedUrl: null,
-    gallery: [
-      '/assets/delivery/route-map.png',
-      '/assets/delivery/assigned-deliveries.png',
-      '/assets/delivery/dispatch-workers.png',
-      '/assets/delivery/orders-pending.png',
-      '/assets/delivery/demand-heatmap.png',
-    ],
+    mediaAspect: 'portrait',
+    gallery: [routeMap, assignedDeliveries, dispatchWorkers, ordersPending, demandHeatmap],
     highlights: [
       'Multi-stop route optimization with flutter_map and OpenRouteService',
       'Supabase phone OTP for verified checkout',

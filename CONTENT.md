@@ -36,6 +36,16 @@ Update these fields when you have assets ready. No component code changes needed
    gallery: ['/assets/gladiator/combat.png'],
    ```
 
+## Mobile delivery platform screenshots
+
+Processed screenshots live in `public/assets/delivery/`. Re-run `python scripts/process-delivery-screenshots.py` if source images change (redacts status bar, brand name, and sensitive fields).
+
+In `src/content/projects.js`, find the `delivery-platform` entry:
+   ```js
+   posterSrc: '/assets/delivery/route-map.png',
+   gallery: ['/assets/delivery/route-map.png', ...],
+   ```
+
 ## Resume PDF
 
 1. Add `public/resume.pdf`

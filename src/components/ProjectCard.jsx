@@ -2,11 +2,15 @@ import MediaPlaceholder from './MediaPlaceholder.jsx'
 import ScrollReveal from './ScrollReveal.jsx'
 
 export default function ProjectCard({ project, featured = false }) {
+  const hasHeroMedia =
+    project.videoSrc || project.posterSrc || (!featured && project.embedUrl)
   const mediaLabel = featured
-    ? 'SDF demo recording coming soon'
-    : project.gallery.length === 0
-      ? 'Screenshots coming soon'
-      : undefined
+    ? project.videoSrc
+      ? undefined
+      : 'SDF demo recording coming soon'
+    : hasHeroMedia || project.gallery.length > 0
+      ? undefined
+      : 'Screenshots coming soon'
 
   return (
     <ScrollReveal>
@@ -17,6 +21,7 @@ export default function ProjectCard({ project, featured = false }) {
           embedUrl={featured ? null : project.embedUrl}
           label={mediaLabel}
           title={project.title}
+          mediaAspect={project.mediaAspect ?? 'video'}
         />
 
         <div className="project-body">
@@ -55,9 +60,9 @@ export default function ProjectCard({ project, featured = false }) {
             ))}
           </ul>
 
-          {project.gallery.length > 0 && (
+          {project.gallery.length > 1 && (
             <div className="project-gallery">
-              {project.gallery.map((src) => (
+              {project.gallery.slice(1).map((src) => (
                 <img key={src} src={src} alt="" loading="lazy" />
               ))}
             </div>

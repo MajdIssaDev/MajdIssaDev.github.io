@@ -4,10 +4,14 @@ export default function MediaPlaceholder({
   embedUrl,
   label = 'Demo recording coming soon',
   title,
+  mediaAspect = 'video',
 }) {
+  const slotClass =
+    mediaAspect === 'portrait' ? 'media-slot media-slot-portrait' : 'media-slot'
+
   if (videoSrc) {
     return (
-      <div className="media-slot">
+      <div className={slotClass}>
         <video
           className="media-video"
           src={videoSrc}
@@ -24,27 +28,28 @@ export default function MediaPlaceholder({
 
   if (posterSrc) {
     return (
-      <div className="media-slot">
-        <img src={posterSrc} alt={title ?? 'Project preview'} className="media-poster" />
+      <div className={slotClass}>
+        <img
+          src={posterSrc}
+          alt={title ?? 'Project preview'}
+          className={
+            mediaAspect === 'portrait' ? 'media-poster media-poster-portrait' : 'media-poster'
+          }
+        />
       </div>
     )
   }
 
   if (embedUrl) {
     return (
-      <div className="media-slot media-embed">
-        <iframe
-          src={embedUrl}
-          title={title ?? 'Project demo'}
-          allowFullScreen
-          loading="lazy"
-        />
+      <div className={`${slotClass} media-embed`}>
+        <iframe src={embedUrl} title={title ?? 'Project demo'} allowFullScreen loading="lazy" />
       </div>
     )
   }
 
   return (
-    <div className="media-slot media-placeholder" aria-label={label}>
+    <div className={`${slotClass} media-placeholder`} aria-label={label}>
       <div className="media-placeholder-grid" aria-hidden="true" />
       <p className="media-placeholder-label">{label}</p>
     </div>
