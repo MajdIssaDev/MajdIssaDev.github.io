@@ -27,14 +27,8 @@ export const projects = [
     compare: {
       before: rayMarchTraditional,
       after: rayMarchRollback,
-      beforeLabel: 'Standard sphere tracing',
+      beforeLabel: 'Standard ray marching',
       afterLabel: 'Rollback on overshoot',
-      callout: {
-        x: 0.5,
-        y: 0.31,
-        placement: 'below',
-        text: 'Standard sphere tracing can terminate before the ray reaches the surface, leaving a visible gap near the object. Rollback on overshoot steps back when a march overshoots, so the hit lands on the surface instead of stopping early.',
-      },
       details: [
         {
           label: 'Ray–surface hit',

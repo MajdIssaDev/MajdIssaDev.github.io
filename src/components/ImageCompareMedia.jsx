@@ -32,7 +32,6 @@ function useCompareSlider() {
 
   const onTrackPointerDown = (event) => {
     if (event.target.closest('.compare-handle-grip')) return
-    if (event.target.closest('.compare-callout')) return
     dragging.current = true
     setFromClientX(event.clientX)
   }
@@ -71,18 +70,16 @@ function CompareCropPane({ src, region, variant }) {
 }
 
 function CompareDetailZoom({ detail, before, after, position }) {
-  const { x, y, w, h } = detail.region
-
   return (
     <div className="compare-detail">
       <p className="compare-detail-label">{detail.label}</p>
       <div
         className="compare-detail-slider"
         style={{
-          '--crop-x': x,
-          '--crop-y': y,
-          '--crop-w': w,
-          '--crop-h': h,
+          '--crop-x': detail.region.x,
+          '--crop-y': detail.region.y,
+          '--crop-w': detail.region.w,
+          '--crop-h': detail.region.h,
         }}
       >
         <div className="compare-detail-viewport">
@@ -105,41 +102,14 @@ function CompareDetailZoom({ detail, before, after, position }) {
   )
 }
 
-function CompareCallout({ callout }) {
-  const [open, setOpen] = useState(false)
-  const placement = callout.placement ?? 'above'
-
-  return (
-    <div
-      className={`compare-callout compare-callout-${placement}`}
-      style={{ left: `${callout.x * 100}%`, top: `${callout.y * 100}%` }}
-      onPointerDown={(event) => event.stopPropagation()}
-      onPointerEnter={() => setOpen(true)}
-      onPointerLeave={() => setOpen(false)}
-    >
-      <button
-        type="button"
-        className="compare-callout-marker"
-        aria-expanded={open}
-        aria-describedby="compare-callout-tooltip"
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span className="compare-callout-pulse" aria-hidden="true" />
-      </button>
-      <div
-        id="compare-callout-tooltip"
-        className={`compare-callout-tooltip ${open ? 'is-visible' : ''}`}
-        role="tooltip"
-      >
-        <p>{callout.text}</p>
-      </div>
-    </div>
-  )
-}
-
 export default function ImageCompareMedia({ compare, title }) {
   const { position, containerRef, onTrackPointerDown, onHandlePointerDown, nudge } =
     useCompareSlider()
+
+  const beforeLabel = compare.beforeLabel ?? 'Before'
+  const afterLabel = compare.afterLabel ?? 'After'
+  const showBeforeLabel = position < 98
+  const showAfterLabel = position > 2
 
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowLeft') {
@@ -155,11 +125,7 @@ export default function ImageCompareMedia({ compare, title }) {
   return (
     <div className="compare-media">
       <div className="compare-slider-wrap">
-        <div
-          ref={containerRef}
-          className="compare-slider"
-          onPointerDown={onTrackPointerDown}
-        >
+        <div ref={containerRef} className="compare-slider" onPointerDown={onTrackPointerDown}>
           <img
             src={compare.after}
             alt={title ?? 'Ray marching comparison'}
@@ -178,8 +144,6 @@ export default function ImageCompareMedia({ compare, title }) {
             />
           </div>
 
-          {compare.callout && <CompareCallout callout={compare.callout} />}
-
           <div className="compare-handle" style={{ left: `${position}%` }}>
             <button
               type="button"
@@ -192,15 +156,25 @@ export default function ImageCompareMedia({ compare, title }) {
             </button>
           </div>
 
-          <span className="compare-badge compare-badge-before">
-            {compare.beforeLabel ?? 'Before'}
-          </span>
-          <span className="compare-badge compare-badge-after">
-            {compare.afterLabel ?? 'After'}
-          </span>
+          {showBeforeLabel && (
+            <span
+              className="compare-badge compare-badge-before"
+              style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+            >
+              {beforeLabel}
+            </span>
+          )}
+          {showAfterLabel && (
+            <span
+              className="compare-badge compare-badge-after"
+              style={{ clipPath: `inset(0 0 0 ${position}%)` }}
+            >
+              {afterLabel}
+            </span>
+          )}
         </div>
         <p className="compare-hint">
-          Drag the handle to compare. Hover the marker above the cube to see why rollback reaches the surface.
+          Drag the handle to compare {beforeLabel.toLowerCase()} against {afterLabel.toLowerCase()}.
         </p>
       </div>
 
