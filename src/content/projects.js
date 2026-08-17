@@ -51,10 +51,10 @@ export const projects = [
     description:
       'High-performance 3D action-RPG prototype with dynamic weapon swapping via AnimatorOverrideControllers and energy-gated combat.',
     github: 'https://github.com/MajdIssaDev/GameEngineUnity-Project-GladiatorGame-V1',
-    demoNote: 'Source available on GitHub. No playable build. See the combat demo clip.',
-    videoSrc: null,
+    demoNote: 'Source available on GitHub. No playable build. Combat clip shows block, parry, light attack, heavy attack, and end of round.',
+    videoSrc: '/assets/gladiator-demo.mp4',
     posterSrc: null,
-    embedUrl: 'https://medal.tv/games/screen-capture/clips/m7jJwNLp0eYWWFBxI?invite=cr-MSxxWkMsMTg3NjQzNTA1&v=15',
+    embedUrl: null,
     mediaAspect: 'video',
     gallery: [],
     highlights: [

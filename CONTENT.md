@@ -46,6 +46,15 @@ Only two full-frame screenshots are needed (same scene and camera, one per mode)
    gallery: ['/assets/sdf/editor.png', '/assets/sdf/npr.png'],
    ```
 
+## Gladiator combat video
+
+1. Add `public/assets/gladiator-demo.mp4`
+2. In `src/content/projects.js`, find the `gladiator` entry:
+   ```js
+   videoSrc: '/assets/gladiator-demo.mp4',
+   embedUrl: null,
+   ```
+
 ## Gladiator screenshots
 
 1. Add images to `public/assets/gladiator/`
