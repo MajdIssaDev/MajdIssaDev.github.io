@@ -32,6 +32,7 @@ function useCompareSlider() {
 
   const onTrackPointerDown = (event) => {
     if (event.target.closest('.compare-handle-grip')) return
+    if (event.target.closest('.compare-callout')) return
     dragging.current = true
     setFromClientX(event.clientX)
   }
@@ -104,6 +105,37 @@ function CompareDetailZoom({ detail, before, after, position }) {
   )
 }
 
+function CompareCallout({ callout }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div
+      className="compare-callout"
+      style={{ left: `${callout.x * 100}%`, top: `${callout.y * 100}%` }}
+      onPointerDown={(event) => event.stopPropagation()}
+      onPointerEnter={() => setOpen(true)}
+      onPointerLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        className="compare-callout-marker"
+        aria-expanded={open}
+        aria-describedby="compare-callout-tooltip"
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span className="compare-callout-pulse" aria-hidden="true" />
+      </button>
+      <div
+        id="compare-callout-tooltip"
+        className={`compare-callout-tooltip ${open ? 'is-visible' : ''}`}
+        role="tooltip"
+      >
+        <p>{callout.text}</p>
+      </div>
+    </div>
+  )
+}
+
 export default function ImageCompareMedia({ compare, title }) {
   const { position, containerRef, onTrackPointerDown, onHandlePointerDown, nudge } =
     useCompareSlider()
@@ -145,18 +177,7 @@ export default function ImageCompareMedia({ compare, title }) {
             />
           </div>
 
-          {(compare.details ?? []).map((detail) => (
-            <span
-              key={detail.label}
-              className="compare-hotspot"
-              style={{
-                left: `${(detail.region.x + detail.region.w / 2) * 100}%`,
-                top: `${(detail.region.y + detail.region.h / 2) * 100}%`,
-              }}
-              title={detail.label}
-              aria-hidden="true"
-            />
-          ))}
+          {compare.callout && <CompareCallout callout={compare.callout} />}
 
           <div className="compare-handle" style={{ left: `${position}%` }}>
             <button
@@ -178,7 +199,7 @@ export default function ImageCompareMedia({ compare, title }) {
           </span>
         </div>
         <p className="compare-hint">
-          Drag the handle to compare standard sphere tracing against rollback on overshoot.
+          Drag the handle to compare. Hover the marker on the cube base to read why the ray stops short.
         </p>
       </div>
 

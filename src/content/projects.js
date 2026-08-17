@@ -29,14 +29,15 @@ export const projects = [
       after: rayMarchRollback,
       beforeLabel: 'Standard sphere tracing',
       afterLabel: 'Rollback on overshoot',
+      callout: {
+        x: 0.53,
+        y: 0.71,
+        text: 'Standard sphere tracing stops short of the surface here, leaving a visible gap at the object base. Rollback on overshoot corrects the overshoot step so the ray reaches the floor contact cleanly.',
+      },
       details: [
         {
           label: 'Object–floor contact',
           region: { x: 0.44, y: 0.58, w: 0.2, h: 0.32 },
-        },
-        {
-          label: 'CSG blend seam',
-          region: { x: 0.56, y: 0.34, w: 0.24, h: 0.3 },
         },
       ],
     },
