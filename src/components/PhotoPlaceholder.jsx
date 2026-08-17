@@ -12,8 +12,11 @@ function getInitials(name) {
 export default function PhotoPlaceholder() {
   if (site.photoSrc) {
     return (
-      <div className="photo-frame">
-        <img src={site.photoSrc} alt={site.name} className="photo-image halftone-photo" />
+      <div className="hero-photo-stack">
+        <div className="photo-frame">
+          <img src={site.photoSrc} alt={site.name} className="photo-image halftone-photo" />
+        </div>
+        {site.location && <p className="photo-location">{site.location}</p>}
       </div>
     )
   }

@@ -16,14 +16,13 @@ def grade_cyan(rgb: np.ndarray) -> np.ndarray:
     """Cool the image toward a dark navy/slate, not bright cyan."""
     f = rgb.astype(np.float32)
     r, g, b = f[..., 0], f[..., 1], f[..., 2]
-    r = r * 0.54 + g * 0.03
-    g = g * 0.66 + b * 0.1
-    b = b * 0.86 + 22.0
-    # Mix toward a darker navy, 20% weaker than the previous pass.
-    r = r * 0.7 + 6.0
-    g = g * 0.74 + 16.0
-    b = np.minimum(255.0, b * 0.82 + 42.0)
-    stacked = np.stack([r, g, b], axis=-1) * 0.78
+    r = r * 0.63 + g * 0.02
+    g = g * 0.73 + b * 0.08
+    b = b * 0.89 + 16.0
+    r = r * 0.76 + 5.0
+    g = g * 0.79 + 12.0
+    b = np.minimum(255.0, b * 0.86 + 32.0)
+    stacked = np.stack([r, g, b], axis=-1) * 0.84
     return np.clip(stacked, 0, 255).astype(np.uint8)
 
 
@@ -68,7 +67,7 @@ def main() -> None:
     graded_img = Image.fromarray(np.dstack([graded, alpha]), mode="RGBA")
     graded_img = ImageEnhance.Contrast(graded_img).enhance(1.1)
     graded_img = ImageEnhance.Brightness(graded_img).enhance(0.88)
-    graded_img = ImageEnhance.Color(graded_img).enhance(0.95)
+    graded_img = ImageEnhance.Color(graded_img).enhance(1.05)
     cropped = crop_to_subject(graded_img)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     cropped.save(OUT, format="PNG", optimize=True)

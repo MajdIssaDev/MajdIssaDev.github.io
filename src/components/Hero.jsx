@@ -23,7 +23,7 @@ export default function Hero() {
             </Link>
           </div>
           <p className="hero-meta">
-            Expected {site.gradYear} · Started {site.started}
+            Expected {site.gradYear} · Started {site.started} · {site.location}
           </p>
         </ScrollReveal>
 
