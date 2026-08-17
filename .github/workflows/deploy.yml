@@ -38,5 +38,10 @@ jobs:
         with:
           path: dist
 
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages (retry on 429/503)
+        uses: Wandalen/wretry.action@v3.5.0
+        with:
+          action: actions/deploy-pages@v4
+          id: deployment
+          attempt_limit: 5
+          attempt_delay: 45000
