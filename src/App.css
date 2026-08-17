@@ -664,7 +664,6 @@
 .compare-callout-tooltip {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 0.65rem);
   z-index: 5;
   width: min(16rem, 70vw);
   padding: 0.75rem 0.85rem;
@@ -672,7 +671,7 @@
   border-radius: 0.65rem;
   background: rgba(15, 23, 42, 0.96);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-  transform: translateX(-50%) translateY(4px);
+  transform: translateX(-50%);
   opacity: 0;
   visibility: hidden;
   transition:
@@ -682,11 +681,32 @@
   pointer-events: none;
 }
 
+.compare-callout-above .compare-callout-tooltip {
+  bottom: calc(100% + 0.65rem);
+  transform: translateX(-50%) translateY(4px);
+}
+
+.compare-callout-below .compare-callout-tooltip {
+  top: calc(100% + 0.65rem);
+  transform: translateX(-50%) translateY(-4px);
+}
+
 .compare-callout-tooltip.is-visible,
 .compare-callout:hover .compare-callout-tooltip,
 .compare-callout-marker:focus-visible + .compare-callout-tooltip {
   opacity: 1;
   visibility: visible;
+}
+
+.compare-callout-above .compare-callout-tooltip.is-visible,
+.compare-callout-above:hover .compare-callout-tooltip,
+.compare-callout-above .compare-callout-marker:focus-visible + .compare-callout-tooltip {
+  transform: translateX(-50%) translateY(0);
+}
+
+.compare-callout-below .compare-callout-tooltip.is-visible,
+.compare-callout-below:hover .compare-callout-tooltip,
+.compare-callout-below .compare-callout-marker:focus-visible + .compare-callout-tooltip {
   transform: translateX(-50%) translateY(0);
 }
 
@@ -697,7 +717,7 @@
   line-height: 1.55;
 }
 
-.compare-callout-tooltip::after {
+.compare-callout-above .compare-callout-tooltip::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -708,6 +728,19 @@
   border-bottom: 1px solid rgba(34, 211, 238, 0.28);
   background: rgba(15, 23, 42, 0.96);
   transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.compare-callout-below .compare-callout-tooltip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-left: 1px solid rgba(34, 211, 238, 0.28);
+  border-top: 1px solid rgba(34, 211, 238, 0.28);
+  background: rgba(15, 23, 42, 0.96);
+  transform: translate(-50%, 50%) rotate(45deg);
 }
 
 .compare-hint {

@@ -30,14 +30,15 @@ export const projects = [
       beforeLabel: 'Standard sphere tracing',
       afterLabel: 'Rollback on overshoot',
       callout: {
-        x: 0.53,
-        y: 0.71,
-        text: 'Standard sphere tracing stops short of the surface here, leaving a visible gap at the object base. Rollback on overshoot corrects the overshoot step so the ray reaches the floor contact cleanly.',
+        x: 0.5,
+        y: 0.31,
+        placement: 'below',
+        text: 'Standard sphere tracing can terminate before the ray reaches the surface, leaving a visible gap near the object. Rollback on overshoot steps back when a march overshoots, so the hit lands on the surface instead of stopping early.',
       },
       details: [
         {
-          label: 'Object–floor contact',
-          region: { x: 0.44, y: 0.58, w: 0.2, h: 0.32 },
+          label: 'Ray–surface hit',
+          region: { x: 0.38, y: 0.16, w: 0.24, h: 0.32 },
         },
       ],
     },

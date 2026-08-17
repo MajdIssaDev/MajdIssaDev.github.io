@@ -107,10 +107,11 @@ function CompareDetailZoom({ detail, before, after, position }) {
 
 function CompareCallout({ callout }) {
   const [open, setOpen] = useState(false)
+  const placement = callout.placement ?? 'above'
 
   return (
     <div
-      className="compare-callout"
+      className={`compare-callout compare-callout-${placement}`}
       style={{ left: `${callout.x * 100}%`, top: `${callout.y * 100}%` }}
       onPointerDown={(event) => event.stopPropagation()}
       onPointerEnter={() => setOpen(true)}
@@ -199,7 +200,7 @@ export default function ImageCompareMedia({ compare, title }) {
           </span>
         </div>
         <p className="compare-hint">
-          Drag the handle to compare. Hover the marker on the cube base to read why the ray stops short.
+          Drag the handle to compare. Hover the marker above the cube to see why rollback reaches the surface.
         </p>
       </div>
 
