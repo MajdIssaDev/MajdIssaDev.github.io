@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import MediaPlaceholder from './MediaPlaceholder.jsx'
 import ImageCompareMedia from './ImageCompareMedia.jsx'
+import ImageLightbox from './ImageLightbox.jsx'
 import ScrollReveal from './ScrollReveal.jsx'
 
 export default function ProjectCard({ project, featured = false }) {
+  const [lightboxIndex, setLightboxIndex] = useState(null)
+  const gallery = project.gallery ?? []
   const hasHeroMedia =
     project.videoSrc ||
     project.posterSrc ||
@@ -14,7 +18,7 @@ export default function ProjectCard({ project, featured = false }) {
       : project.compare
         ? undefined
         : 'SDF demo recording coming soon'
-    : hasHeroMedia || project.gallery.length > 0
+    : hasHeroMedia || gallery.length > 0
       ? undefined
       : 'Screenshots coming soon'
 
@@ -33,6 +37,14 @@ export default function ProjectCard({ project, featured = false }) {
             label={mediaLabel}
             title={project.title}
             mediaAspect={project.mediaAspect ?? 'video'}
+            onPosterClick={
+              gallery.length > 0
+                ? () => {
+                    const posterIndex = gallery.indexOf(project.posterSrc)
+                    setLightboxIndex(posterIndex >= 0 ? posterIndex : 0)
+                  }
+                : undefined
+            }
           />
         )}
         <div className="project-body">
@@ -71,10 +83,18 @@ export default function ProjectCard({ project, featured = false }) {
             ))}
           </ul>
 
-          {project.gallery.length > 1 && (
+          {gallery.length > 1 && (
             <div className="project-gallery">
-              {project.gallery.slice(1).map((src) => (
-                <img key={src} src={src} alt="" loading="lazy" />
+              {gallery.slice(1).map((src, offset) => (
+                <button
+                  key={src}
+                  type="button"
+                  className="project-gallery-btn"
+                  onClick={() => setLightboxIndex(offset + 1)}
+                  aria-label={`View ${project.title} screenshot ${offset + 2}`}
+                >
+                  <img src={src} alt="" loading="lazy" />
+                </button>
               ))}
             </div>
           )}
@@ -88,6 +108,13 @@ export default function ProjectCard({ project, featured = false }) {
           <p className="project-note">{project.demoNote}</p>
         </div>
       </article>
+      <ImageLightbox
+        images={gallery}
+        index={lightboxIndex}
+        title={project.title}
+        onClose={() => setLightboxIndex(null)}
+        onChange={setLightboxIndex}
+      />
     </ScrollReveal>
   )
 }

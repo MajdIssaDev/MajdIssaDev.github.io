@@ -5,6 +5,7 @@ export default function MediaPlaceholder({
   label = 'Demo recording coming soon',
   title,
   mediaAspect = 'video',
+  onPosterClick,
 }) {
   const slotClass =
     mediaAspect === 'portrait' ? 'media-slot media-slot-portrait' : 'media-slot'
@@ -27,17 +28,32 @@ export default function MediaPlaceholder({
   }
 
   if (posterSrc) {
-    return (
-      <div className={slotClass}>
-        <img
-          src={posterSrc}
-          alt={title ?? 'Project preview'}
-          className={
-            mediaAspect === 'portrait' ? 'media-poster media-poster-portrait' : 'media-poster'
-          }
-        />
-      </div>
+    const poster = (
+      <img
+        src={posterSrc}
+        alt={title ?? 'Project preview'}
+        className={
+          mediaAspect === 'portrait' ? 'media-poster media-poster-portrait' : 'media-poster'
+        }
+      />
     )
+
+    if (onPosterClick) {
+      return (
+        <div className={slotClass}>
+          <button
+            type="button"
+            className="media-poster-button"
+            onClick={onPosterClick}
+            aria-label={`View larger ${title ?? 'project'} screenshot`}
+          >
+            {poster}
+          </button>
+        </div>
+      )
+    }
+
+    return <div className={slotClass}>{poster}</div>
   }
 
   if (embedUrl) {
