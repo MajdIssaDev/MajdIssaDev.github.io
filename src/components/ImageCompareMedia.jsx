@@ -108,8 +108,6 @@ export default function ImageCompareMedia({ compare, title }) {
 
   const beforeLabel = compare.beforeLabel ?? 'Before'
   const afterLabel = compare.afterLabel ?? 'After'
-  const showBeforeLabel = position < 98
-  const showAfterLabel = position > 2
 
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowLeft') {
@@ -128,10 +126,22 @@ export default function ImageCompareMedia({ compare, title }) {
         <div ref={containerRef} className="compare-slider" onPointerDown={onTrackPointerDown}>
           <img
             src={compare.after}
-            alt={title ?? 'Ray marching comparison'}
-            className="compare-img compare-img-after"
+            alt=""
+            className="compare-img compare-img-sizer"
             draggable={false}
+            aria-hidden="true"
           />
+
+          <div className="compare-after-layer">
+            <img
+              src={compare.after}
+              alt={title ?? 'Ray marching comparison'}
+              className="compare-img compare-img-after"
+              draggable={false}
+            />
+            <span className="compare-badge compare-badge-after">{afterLabel}</span>
+          </div>
+
           <div
             className="compare-before-layer"
             style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
@@ -142,6 +152,7 @@ export default function ImageCompareMedia({ compare, title }) {
               className="compare-img compare-img-before"
               draggable={false}
             />
+            <span className="compare-badge compare-badge-before">{beforeLabel}</span>
           </div>
 
           <div className="compare-handle" style={{ left: `${position}%` }}>
@@ -155,23 +166,6 @@ export default function ImageCompareMedia({ compare, title }) {
               <span aria-hidden="true" />
             </button>
           </div>
-
-          {showBeforeLabel && (
-            <span
-              className="compare-badge compare-badge-before"
-              style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-            >
-              {beforeLabel}
-            </span>
-          )}
-          {showAfterLabel && (
-            <span
-              className="compare-badge compare-badge-after"
-              style={{ clipPath: `inset(0 0 0 ${position}%)` }}
-            >
-              {afterLabel}
-            </span>
-          )}
         </div>
         <p className="compare-hint">
           Drag the handle to compare {beforeLabel.toLowerCase()} against {afterLabel.toLowerCase()}.
